@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://www.springframework.org/schema/aop         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd     http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx-3.0.xsd        http://www.springframework.org/schema/context      http://www.springframework.org/schema/context/spring-context-3.0.xsd        http://www.springframework.org/schema/jee      http://www.springframework.org/schema/jee/spring-jee-3.0.xsd         http://www.springframework.org/schema/lang     http://www.springframework.org/schema/lang/spring-lang-3.0.xsd     http://www.springframework.org/schema/security      http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" name="dataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+		<property name="url" value="jdbc:mysql://localhost:3306/shopdb" />
+		<property name="maxIdle" value="1" />
+		<property name="maxActive" value="10" />
+	</bean>
+	
+
+     
+     <bean name="userDAO" class="edu.shop.dao.impl.UserDao">
+        <property name="dataSource" ref="dataSource"/>
+     </bean>
+
+		<bean name="accountDAO" class="edu.shop.dao.impl.AccountDao">
+	        <property name="dataSource" ref="dataSource"/>
+	     </bean>
+	     
+	     <bean name="productDAO" class="edu.shop.dao.impl.ProductDAO">
+	        <property name="dataSource" ref="dataSource"/>
+	     </bean>
+	     
+	     <bean name="orderDAO" class="edu.shop.dao.impl.OrderDAO">
+	        <property name="dataSource" ref="dataSource"/>
+	     </bean>
+	     
+	     
+     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	
+</beans>
