@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
 <link type="text/css" rel="stylesheet" href="<c:url value="Resources/css/style.css" />" />
-<title>Login</title>
+<title>Admin</title>
 </head>
 <body>
 <ul id="menu-bar">

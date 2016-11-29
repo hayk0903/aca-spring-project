@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
 <link type="text/css" rel="stylesheet" href="<c:url value="Resources/css/style.css" />" />
-<title>Products</title>
+<title>Distribution</title>
 </head>
 <body>
 <ul id="menu-bar">
